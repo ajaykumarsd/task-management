@@ -28,7 +28,7 @@
     "**/*.{js,jsx,ts,tsx}": [
       "npm run lint"
     ]
-},
+  },
   "eslintConfig": {
     "extends": [
       "react-app",

@@ -1,68 +1,66 @@
-import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
+import React, { useState } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import Modal from 'react-bootstrap/Modal'
 
-let tasksList = [];
 const CreateTask = (props: any) => {
   const [taskDetails, setTaskDetails] = useState({
-    taskname: "",
-    date: "",
-    start_time: "",
-    end_time: "",
+    taskname: '',
+    date: '',
+    start_time: '',
+    end_time: '',
     isStarred: false,
-  });
+  })
   const handleChange = (event: { target: { value: string; name: string } }) => {
-    setTaskDetails({ ...taskDetails, [event.target.name]: event.target.value });
-  };
+    setTaskDetails({ ...taskDetails, [event.target.name]: event.target.value })
+  }
   const saveTask = () => {
+    const getTasksList = JSON.parse(localStorage.getItem('task')!) || []
     props.onHide();
-    tasksList.push(taskDetails);
-    console.log(tasksList);
-    localStorage.setItem("task", JSON.stringify(tasksList));
-  };
+    getTasksList.push(taskDetails)
+    localStorage.removeItem('task');
+    localStorage.setItem('task', JSON.stringify(getTasksList))
+  }
   return (
     <Modal {...props} centered>
       <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Create Task
-        </Modal.Title>
+        <Modal.Title id='contained-modal-title-vcenter'>Create Task</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Task Name</Form.Label>
             <Form.Control
-              type="text"
-              placeholder="Enter task name"
-              name="taskname"
+              type='text'
+              placeholder='Enter task name'
+              name='taskname'
               value={taskDetails.taskname}
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Schedule Date</Form.Label>
             <Form.Control
-              type="date"
+              type='date'
               value={taskDetails.date}
-              name="date"
+              name='date'
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>Start Time</Form.Label>
             <Form.Control
-              type="time"
+              type='time'
               value={taskDetails.start_time}
-              name="start_time"
+              name='start_time'
               onChange={handleChange}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className='mb-3' controlId='formBasicEmail'>
             <Form.Label>End Time</Form.Label>
             <Form.Control
-              type="time"
+              type='time'
               value={taskDetails.end_time}
-              name="end_time"
+              name='end_time'
               onChange={handleChange}
             />
           </Form.Group>
@@ -70,11 +68,11 @@ const CreateTask = (props: any) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Cancel</Button>
-        <Button variant="primary" type="submit" onClick={saveTask}>
+        <Button variant='primary' type='submit' onClick={saveTask}>
           Submit
         </Button>
       </Modal.Footer>
     </Modal>
-  );
-};
-export default CreateTask;
+  )
+}
+export default CreateTask

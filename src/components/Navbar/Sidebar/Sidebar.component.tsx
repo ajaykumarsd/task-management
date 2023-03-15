@@ -4,22 +4,22 @@ import { SidebarContainer } from "./Sidebar.styles.tsx";
 const SidebarComponent = () => {
   return (
     <SidebarContainer>
-      <div class="wrapper">
-        <div class="sidebar">
+      <div className="wrapper">
+        <div className="sidebar">
           <ul>
             <li>
               <Link to="/inbox">
-                <span class="item">Inbox</span>
+                <span className="item">Inbox</span>
               </Link>
             </li>
             <li>
               <Link to="/upcoming">
-                <span class="item">Upcoming</span>
+                <span className="item">Upcoming</span>
               </Link>
             </li>
             <li>
               <Link to="/starred">
-                <span class="item">Starred</span>
+                <span className="item">Starred</span>
               </Link>
             </li>
           </ul>
