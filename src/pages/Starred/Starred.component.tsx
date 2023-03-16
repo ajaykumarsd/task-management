@@ -30,7 +30,7 @@ const StarredComponent = () => {
           {starredItems?.length
             ? starredItems.map((item: CreateTaskInterface) => {
                 return (
-                  <>
+                  <div className='list-item'>
                     <dt>
                       <input
                         className='form-check-input'
@@ -43,7 +43,7 @@ const StarredComponent = () => {
                       <span>{item.taskname}</span>
                     </dt>
                     <dd>{item.date}</dd>
-                  </>
+                  </div>
                 )
               })
             : 'No Starred item'}

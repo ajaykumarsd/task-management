@@ -7,6 +7,9 @@ import { CreateTaskInterface, CreateTaskPropsInterface } from 'pages/CreateTask/
 const Inbox = () => {
   const [show, setShow] = useState<boolean>(false)
   const data = JSON.parse(localStorage.getItem('task')!)
+  const [taskItems, setTaskItems] = React.useState(data)
+  const dragItem = React.useRef<any>(null)
+  const dragOverItem = React.useRef<any>(null)
   const changeHandler = (item: React.ChangeEvent<HTMLInputElement>) => {
     if (item.target.checked) {
       data.forEach((row: CreateTaskInterface) => {
@@ -26,6 +29,18 @@ const Inbox = () => {
   const TaskModal = (props: CreateTaskPropsInterface) => {
     return <CreateTask {...props} />
   }
+  const handleSort = () => {
+    const _taskItems = [...taskItems]
+
+    const draggedItemContent = _taskItems.splice(dragItem.current, 1)[0]
+
+    _taskItems.splice(dragOverItem.current, 0, draggedItemContent)
+
+    dragItem.current = null
+    dragOverItem.current = null
+
+    setTaskItems(_taskItems)
+  }
   return (
     <>
       <InboxItems>
@@ -42,9 +57,17 @@ const Inbox = () => {
           <TaskModal show={show} onHide={() => setShow(false)} />
           <dl>
             {data?.length ? (
-              data?.map((item: CreateTaskInterface) => {
+              taskItems?.map((item: CreateTaskInterface, index: number) => {
                 return (
-                  <>
+                  <div
+                    draggable
+                    className='list-item'
+                    key={index}
+                    onDragStart={(e) => (dragItem.current = index)}
+                    onDragEnter={(e) => (dragOverItem.current = index)}
+                    onDragEnd={handleSort}
+                    onDragOver={(e) => e.preventDefault()}
+                  >
                     <dt>
                       <input
                         className='form-check-input'
@@ -56,8 +79,11 @@ const Inbox = () => {
                       ></input>
                       <span>{item.taskname}</span>
                     </dt>
-                    <dd>{item.date}  <i className='fa-solid fa-bars'></i></dd>
-                  </>
+                    <dd>
+                      {' '}
+                      <span>{item.date}</span> <i className='fa-solid fa-bars'></i>
+                    </dd>
+                  </div>
                 )
               })
             ) : (

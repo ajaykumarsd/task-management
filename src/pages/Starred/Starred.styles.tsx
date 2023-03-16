@@ -27,9 +27,12 @@ export const InboxItems = styled.div`
   }
 
   dl {
-    display: grid;
-    grid-template-columns: auto 1fr;
     gap: 0.5rem 0;
+    .list-item {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
   }
 
   dl > * {

@@ -23,13 +23,13 @@ export const isTodayTask = (row: CreateTaskInterface) => {
   }
   return false
 }
-export const timeConversion = (time: string | string[]) => {
-  const time1 = time.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
+export const timeConversion = (time: any) => {
+  time = time.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
 
   if (time.length > 1) {
     time = time.slice(1)
-    time1[5] = +time1[0] < 12 ? 'AM' : 'PM'
-    time1[0] = +time1[0] % 12 || 12
+    time[5] = +time[0] < 12 ? 'AM' : 'PM'
+    time[0] = +time[0] % 12 || 12
   }
-  return time1.join('')
+  return time.join('')
 }

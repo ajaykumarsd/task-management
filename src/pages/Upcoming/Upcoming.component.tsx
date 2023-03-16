@@ -18,12 +18,12 @@ const UpcomingComponent = () => {
           {upcomingTask?.length
             ? upcomingTask.map((item: CreateTaskInterface) => {
                 return (
-                  <>
+                  <div className='list-item'>
                     <dt>
                       <span>{item.taskname}</span>
                     </dt>
                     <dd>{item.date}</dd>
-                  </>
+                  </div>
                 )
               })
             : 'No Upcoming task'}
