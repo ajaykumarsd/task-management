@@ -23,15 +23,12 @@ const Inbox = () => {
     }
     localStorage.setItem('task', JSON.stringify(data))
   }
-  function TaskModal(props: CreateTaskPropsInterface) {
+  const TaskModal = (props: CreateTaskPropsInterface) => {
     return <CreateTask {...props} />
   }
   return (
     <>
       <InboxItems>
-        {/* <input className='star' type='checkbox' title='bookmark page' />
-        <br />
-        <br /> */}
         <article>
           <div className='list-header'>
             <h3>Tasks List</h3>
@@ -42,10 +39,7 @@ const Inbox = () => {
               onClick={() => setShow(true)}
             />
           </div>
-          <TaskModal
-            show={show}
-            onHide={() => setShow(false)}
-          />
+          <TaskModal show={show} onHide={() => setShow(false)} />
           <dl>
             {data?.length ? (
               data?.map((item: CreateTaskInterface) => {
@@ -62,7 +56,7 @@ const Inbox = () => {
                       ></input>
                       <span>{item.taskname}</span>
                     </dt>
-                    <dd>{item.date}</dd>
+                    <dd>{item.date}  <i className='fa-solid fa-bars'></i></dd>
                   </>
                 )
               })

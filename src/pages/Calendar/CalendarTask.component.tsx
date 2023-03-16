@@ -25,7 +25,7 @@ const calendarStyles = {
 }
 const CalendarTask = () => {
   const data = JSON.parse(localStorage.getItem('task')!)
-  let events: CurrentTaskInterface[] = []
+  const events: CurrentTaskInterface[] = []
   data.forEach((item: TaskInterface) => {
     let currentItem: CurrentTaskInterface = {
       title: '',

@@ -3,20 +3,6 @@ export const InboxItems = styled.div`
   * {
     box-sizing: border-box;
   }
-  .star {
-    visibility:hidden;
-    font-size:30px;
-    cursor:pointer;
-}
-.star:before {
-   content: 'ff';
-   position: absolute;
-   visibility:visible;
-}
-.star:checked:before {
-   content: 'dd';
-   position: absolute;
-}
   body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
@@ -63,7 +49,6 @@ export const InboxItems = styled.div`
 
   dt {
     display: flex;
-
     span {
       margin-left: 10px;
       font-size: 15px;
@@ -79,5 +64,9 @@ export const InboxItems = styled.div`
   dd {
     margin: 0;
     align-items: center;
+    i {
+      margin-left: 10rem;
+      cursor: pointer;
+    }
   }
 `
