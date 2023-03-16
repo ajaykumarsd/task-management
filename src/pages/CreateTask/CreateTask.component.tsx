@@ -1,16 +1,17 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import Modal from 'react-bootstrap/Modal'
+import { CreateTaskInterface, CreateTaskPropsInterface, EventInterface } from './CreateTask.types'
 
-const CreateTask = (props: any) => {
-  const [taskDetails, setTaskDetails] = useState({
+const CreateTask = (props: CreateTaskPropsInterface) => {
+  const [taskDetails, setTaskDetails] = useState<CreateTaskInterface>({
     taskname: '',
     date: '',
     start_time: '',
     end_time: '',
     isStarred: false,
   })
-  const handleChange = (event: { target: { value: string; name: string } }) => {
+  const handleChange = (event: EventInterface) => {
     setTaskDetails({ ...taskDetails, [event.target.name]: event.target.value })
   }
   const saveTask = () => {

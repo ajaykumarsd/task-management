@@ -1,4 +1,6 @@
-export const isUpcomingTask = (row) => {
+import { CreateTaskInterface } from "pages/CreateTask/CreateTask.types"
+
+export const isUpcomingTask = (row: CreateTaskInterface) => {
   const taskDate = (row.date + ' ' + row.start_time).toString()
   const taskTimestamp = new Date(taskDate).getTime()
   const currentTimeStamp = Math.floor(new Date().getTime())
@@ -9,7 +11,7 @@ export const isUpcomingTask = (row) => {
   }
 }
 
-export const isTodayTask = (row) => {
+export const isTodayTask = (row: CreateTaskInterface) => {
   const taskDate = new Date(row.date.toString())
   taskDate.setHours(0, 0, 0, 0)
   const getTaskDate = `${taskDate.getDate()}/${taskDate.getMonth() + 1}/${taskDate.getFullYear()}`
@@ -21,7 +23,7 @@ export const isTodayTask = (row) => {
   }
   return false
 }
-export const timeConversion = (time) => {
+export const timeConversion = (time: any) => {
   time = time.match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [time]
 
   if (time.length > 1) {

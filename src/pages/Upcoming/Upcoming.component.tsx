@@ -1,9 +1,10 @@
+import { CreateTaskInterface } from 'pages/CreateTask/CreateTask.types';
 import React from 'react'
-import { isUpcomingTask } from '../../utils/task.helper.ts'
-import { InboxItems } from '../Inbox/Inbox.styles.tsx'
+import { isUpcomingTask } from '../../utils/task.helper'
+import { InboxItems } from '../Inbox/Inbox.styles'
 const UpcomingComponent = () => {
   const data = JSON.parse(localStorage.getItem('task')!);
-  const upcomingTask = data?.filter((row) => {
+  const upcomingTask = data?.filter((row: CreateTaskInterface) => {
     if (isUpcomingTask(row)) {
       return row;
     }
@@ -12,10 +13,10 @@ const UpcomingComponent = () => {
   return (
     <InboxItems>
       <article>
-        <h1>Upcoming Tasks</h1>
+        <h3>Upcoming Tasks</h3>
         <dl>
           {upcomingTask?.length
-            ? upcomingTask.map((item) => {
+            ? upcomingTask.map((item: CreateTaskInterface) => {
                 return (
                   <>
                     <dt>

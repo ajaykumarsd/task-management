@@ -31,9 +31,15 @@ export const InboxItems = styled.div`
   article {
     min-width: 40rem;
     margin: 0 auto;
-    border: 0.18rem solid lightgrey;
     padding: clamp(1rem, 2vw, 3rem);
-    border-radius: 0.5rem;
+    border-radius: 1rem;
+    .list-header {
+      display: flex;
+      justify-content: space-between;
+      .add-task {
+        cursor: pointer;
+      }
+    }
   }
 
   article > * + * {
@@ -48,7 +54,7 @@ export const InboxItems = styled.div`
 
   dl > * {
     background: antiquewhite;
-    padding: 1rem;
+    padding: 0.3rem;
   }
 
   dl > :nth-of-type(2n) {
@@ -56,11 +62,13 @@ export const InboxItems = styled.div`
   }
 
   dt {
-    display: inline;
-    font-weight: 700;
-    font-size: 1.3rem;
+    display: flex;
+
     span {
       margin-left: 10px;
+      font-size: 15px;
+      color: #777982;
+      font-weight: 500;
     }
     .form-check-input {
       font-size: 20px;
@@ -70,7 +78,6 @@ export const InboxItems = styled.div`
 
   dd {
     margin: 0;
-    padding: 1rem;
     align-items: center;
   }
 `

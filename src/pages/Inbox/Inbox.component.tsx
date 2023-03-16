@@ -1,24 +1,30 @@
-import React from 'react'
-import { InboxItems } from './Inbox.styles.tsx'
-import TaskChart from '../Charts/Chart.component.tsx'
+import React, { useState } from 'react'
+import { InboxItems } from './Inbox.styles'
+import TaskChart from '../Charts/Chart.component'
+import CreateTask from '../CreateTask/CreateTask.component'
+import CollapseArrow from '../../assets/icon/addtask.svg'
+import { CreateTaskInterface, CreateTaskPropsInterface } from 'pages/CreateTask/CreateTask.types'
 const Inbox = () => {
+  const [show, setShow] = useState<boolean>(false)
   const data = JSON.parse(localStorage.getItem('task')!)
   const changeHandler = (item: React.ChangeEvent<HTMLInputElement>) => {
     if (item.target.checked) {
-      data.forEach((row) => {
+      data.forEach((row: CreateTaskInterface) => {
         if (item.target.name === row.taskname) {
           row.isStarred = true
         }
       })
     } else {
-      console.log('unchecked', item.target)
-      data.forEach((row) => {
+      data.forEach((row: CreateTaskInterface) => {
         if (item.target.name === row.taskname) {
           row.isStarred = false
         }
       })
     }
     localStorage.setItem('task', JSON.stringify(data))
+  }
+  function TaskModal(props: CreateTaskPropsInterface) {
+    return <CreateTask {...props} />
   }
   return (
     <>
@@ -27,10 +33,22 @@ const Inbox = () => {
         <br />
         <br /> */}
         <article>
-          <h3>Tasks List</h3>
+          <div className='list-header'>
+            <h3>Tasks List</h3>
+            <img
+              className='add-task'
+              src={CollapseArrow}
+              alt='add task'
+              onClick={() => setShow(true)}
+            />
+          </div>
+          <TaskModal
+            show={show}
+            onHide={() => setShow(false)}
+          />
           <dl>
             {data?.length ? (
-              data?.map((item) => {
+              data?.map((item: CreateTaskInterface) => {
                 return (
                   <>
                     <dt>

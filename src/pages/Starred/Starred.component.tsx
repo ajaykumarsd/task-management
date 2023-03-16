@@ -1,19 +1,20 @@
+import { CreateTaskInterface } from 'pages/CreateTask/CreateTask.types'
 import React from 'react'
-import { InboxItems } from './Starred.styles.tsx'
+import { InboxItems } from './Starred.styles'
 const StarredComponent = () => {
   const data = JSON.parse(localStorage.getItem('task')!)
-  const starredItems = data?.filter((row) => {
+  const starredItems = data?.filter((row: CreateTaskInterface) => {
     return row.isStarred === true
   })
   const changeHandler = (item: React.ChangeEvent<HTMLInputElement>) => {
     if (item.target.checked) {
-      data.forEach((row) => {
+      data.forEach((row: CreateTaskInterface) => {
         if (item.target.name === row.taskname) {
           row.isStarred = true
         }
       })
     } else {
-      data.forEach((row) => {
+      data.forEach((row: CreateTaskInterface) => {
         if (item.target.name === row.taskname) {
           row.isStarred = false
         }
@@ -24,10 +25,10 @@ const StarredComponent = () => {
   return (
     <InboxItems>
       <article>
-        <h1>Starred Tasks</h1>
+        <h3>Starred Tasks</h3>
         <dl>
           {starredItems?.length
-            ? starredItems.map((item) => {
+            ? starredItems.map((item: CreateTaskInterface) => {
                 return (
                   <>
                     <dt>

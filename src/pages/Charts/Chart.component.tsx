@@ -1,11 +1,12 @@
 import React from 'react';
 import { Pie } from 'react-chartjs-2';
-import { ChartStyles } from './Chart.styles.tsx';
-import { TaskData } from './labels.ts';
-import { isUpcomingTask }  from '../../utils/task.helper.ts';
+import { ChartStyles } from './Chart.styles';
+import { TaskData } from './labels';
+import { isUpcomingTask }  from '../../utils/task.helper';
+import { CreateTaskInterface } from 'pages/CreateTask/CreateTask.types';
 const TaskChart = () => {
   const data = JSON.parse(localStorage.getItem('task')!);
-  const upcomingTask = data?.filter((row) => {
+  const upcomingTask = data?.filter((row: CreateTaskInterface) => {
     if (isUpcomingTask(row)) {
       return row;
     }
@@ -25,8 +26,6 @@ const TaskChart = () => {
     ],
   }
   return (
-    <>
-      <h3>Completed vs Pending Tasks</h3>
       <ChartStyles>
       <Pie
         data={chartData}
@@ -40,7 +39,6 @@ const TaskChart = () => {
         }}
       />
       </ChartStyles>
-    </>
   )
 }
 export default TaskChart;

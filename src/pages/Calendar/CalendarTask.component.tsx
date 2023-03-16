@@ -6,6 +6,7 @@ import startOfWeek from 'date-fns/startOfWeek'
 import { Calendar, dateFnsLocalizer } from 'react-big-calendar'
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import 'react-datepicker/dist/react-datepicker.css'
+import { CurrentTaskInterface, TaskInterface } from './CalendarTask.types'
 
 const locales = {
   'en-US': require('date-fns/locale/en-US'),
@@ -17,40 +18,16 @@ const localizer = dateFnsLocalizer({
   getDay,
   locales,
 })
-
-const events = [
-  {
-    title: 'Big Meeting',
-    allDay: true,
-    start: new Date(2023, 2, 2),
-    end: new Date(2023, 2, 2),
-  },
-  //   {
-  //     title: 'Vacation',
-  //     allDay: true,
-  //     start: new Date(2023, 3, 7),
-  //     end: new Date(2023, 3, 10),
-  //   },
-  //   {
-  //     title: 'Conference',
-  //     allDay: true,
-  //     start: new Date(2023, 3, 20),
-  //     end: new Date(2023, 3, 23),
-  //   },
-]
-
+const calendarStyles = {
+  height: 500,
+  margin: '50px',
+  width: '75vw',
+}
 const CalendarTask = () => {
   const data = JSON.parse(localStorage.getItem('task')!)
-  console.log(data)
-  //   let temp = {
-  //     title: '',
-  //     allDay: true,
-  //     start: new Date(2023, 2, 2),
-  //     end: new Date(2023, 2, 2),
-  //   };
-  let events = []
-  data.forEach((item) => {
-    let currentItem: { title: ''; allDay: boolean; start: Date; end: Date } = {
+  let events: CurrentTaskInterface[] = []
+  data.forEach((item: TaskInterface) => {
+    let currentItem: CurrentTaskInterface = {
       title: '',
       allDay: false,
       start: new Date(2023, 2, 2),
@@ -62,7 +39,6 @@ const CalendarTask = () => {
     currentItem.end = item.date
     events.push(currentItem)
   })
-  console.log(events)
   return (
     <>
       <Calendar
@@ -70,7 +46,7 @@ const CalendarTask = () => {
         events={events}
         startAccessor='start'
         endAccessor='end'
-        style={{ height: 500, margin: '50px', width: '75vw' }}
+        style={calendarStyles}
       />
     </>
   )

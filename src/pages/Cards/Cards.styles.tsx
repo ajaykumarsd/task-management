@@ -34,8 +34,8 @@ margin-left: 100px;
   opacity: 1;
 }
 
-.yellow {
-  background-color: #84c5da;
+.card-bg {
+  background-color: #ddd7d2;
 }
 .more-button {
   position: absolute;
