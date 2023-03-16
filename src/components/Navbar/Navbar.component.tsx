@@ -22,7 +22,7 @@ const NavbarComponent = () => {
           </Nav>
         </Container>
       </Navbar>
-      <TaskModal show={show} onHide={() => setShow(false)} />
+      <TaskModal show={show} onHide={() => setShow(false)} save = {(data)=>{console.log(data)}}/>
     </>
   );
 };

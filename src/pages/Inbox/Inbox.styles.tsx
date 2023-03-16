@@ -1,11 +1,24 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
 export const InboxItems = styled.div`
   * {
     box-sizing: border-box;
   }
-
+  .star {
+    visibility:hidden;
+    font-size:30px;
+    cursor:pointer;
+}
+.star:before {
+   content: 'ff';
+   position: absolute;
+   visibility:visible;
+}
+.star:checked:before {
+   content: 'dd';
+   position: absolute;
+}
   body {
-    font-family: "Open Sans", sans-serif;
+    font-family: 'Open Sans', sans-serif;
     margin: 0;
     padding: 1rem;
   }
@@ -47,7 +60,11 @@ export const InboxItems = styled.div`
     font-weight: 700;
     font-size: 1.3rem;
     span {
-        margin-left: 10px;
+      margin-left: 10px;
+    }
+    .form-check-input {
+      font-size: 20px;
+      cursor: pointer;
     }
   }
 
@@ -56,4 +73,4 @@ export const InboxItems = styled.div`
     padding: 1rem;
     align-items: center;
   }
-`;
+`

@@ -22,6 +22,11 @@ const SidebarComponent = () => {
                 <span className="item">Starred</span>
               </Link>
             </li>
+            <li>
+              <Link to="/calendar">
+                <span className="item">Calendar</span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

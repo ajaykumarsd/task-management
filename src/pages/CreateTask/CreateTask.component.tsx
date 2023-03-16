@@ -18,7 +18,7 @@ const CreateTask = (props: any) => {
     props.onHide();
     getTasksList.push(taskDetails)
     localStorage.removeItem('task');
-    localStorage.setItem('task', JSON.stringify(getTasksList))
+    localStorage.setItem('task', JSON.stringify(getTasksList));
   }
   return (
     <Modal {...props} centered>

@@ -1,5 +1,6 @@
 import React from 'react'
 import { InboxItems } from './Inbox.styles.tsx'
+import TaskChart from '../Charts/Chart.component.tsx'
 const Inbox = () => {
   const data = JSON.parse(localStorage.getItem('task')!)
   const changeHandler = (item: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,35 +21,41 @@ const Inbox = () => {
     localStorage.setItem('task', JSON.stringify(data))
   }
   return (
-    <InboxItems>
-      <article>
-        <h3>Tasks List</h3>
-        <dl>
-          {data?.length ? (
-            data?.map((item) => {
-              return (
-                <>
-                  <dt>
-                    <input
-                      className='form-check-input'
-                      type='checkbox'
-                      onChange={(item) => changeHandler(item)}
-                      name={item.taskname}
-                      id='taskCheckBox'
-                      defaultChecked={item.isStarred}
-                    ></input>
-                    <span>{item.taskname}</span>
-                  </dt>
-                  <dd>{item.date}</dd>
-                </>
-              )
-            })
-          ) : (
-            <>Please create new task</>
-          )}
-        </dl>
-      </article>
-    </InboxItems>
+    <>
+      <InboxItems>
+        {/* <input className='star' type='checkbox' title='bookmark page' />
+        <br />
+        <br /> */}
+        <article>
+          <h3>Tasks List</h3>
+          <dl>
+            {data?.length ? (
+              data?.map((item) => {
+                return (
+                  <>
+                    <dt>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        onChange={(item) => changeHandler(item)}
+                        name={item.taskname}
+                        id='taskCheckBox'
+                        defaultChecked={item.isStarred}
+                      ></input>
+                      <span>{item.taskname}</span>
+                    </dt>
+                    <dd>{item.date}</dd>
+                  </>
+                )
+              })
+            ) : (
+              <>Please create new task</>
+            )}
+          </dl>
+        </article>
+      </InboxItems>
+      <TaskChart />{' '}
+    </>
   )
 }
 export default Inbox
