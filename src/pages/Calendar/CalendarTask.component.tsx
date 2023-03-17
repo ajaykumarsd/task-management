@@ -9,46 +9,46 @@ import 'react-datepicker/dist/react-datepicker.css'
 import { CurrentTaskInterface, TaskInterface } from './CalendarTask.types'
 
 const locales = {
-  'en-US': require('date-fns/locale/en-US'),
+	'en-US': require('date-fns/locale/en-US')
 }
 const localizer = dateFnsLocalizer({
-  format,
-  parse,
-  startOfWeek,
-  getDay,
-  locales,
+	format,
+	parse,
+	startOfWeek,
+	getDay,
+	locales
 })
 const calendarStyles = {
-  height: 500,
-  margin: '50px',
-  width: '75vw',
+	height: 500,
+	margin: '50px',
+	width: '75vw'
 }
 const CalendarTask = () => {
-  const data = JSON.parse(localStorage.getItem('task')!)
-  const events: CurrentTaskInterface[] = []
-  data.forEach((item: TaskInterface) => {
-    let currentItem: CurrentTaskInterface = {
-      title: '',
-      allDay: false,
-      start: new Date(2023, 2, 2),
-      end: new Date(2023, 2, 2),
-    }
-    currentItem.title = item.taskname
-    currentItem.allDay = true
-    currentItem.start = item.date
-    currentItem.end = item.date
-    events.push(currentItem)
-  })
-  return (
-    <>
-      <Calendar
-        localizer={localizer}
-        events={events}
-        startAccessor='start'
-        endAccessor='end'
-        style={calendarStyles}
-      />
-    </>
-  )
+	const data = JSON.parse(localStorage.getItem('task')!)
+	const events: CurrentTaskInterface[] = []
+	data.forEach((item: TaskInterface) => {
+		const currentItem: CurrentTaskInterface = {
+			title: '',
+			allDay: false,
+			start: new Date(2023, 2, 2),
+			end: new Date(2023, 2, 2)
+		}
+		currentItem.title = item.taskname
+		currentItem.allDay = true
+		currentItem.start = item.date
+		currentItem.end = item.date
+		events.push(currentItem)
+	})
+	return (
+		<>
+			<Calendar
+				localizer={localizer}
+				events={events}
+				startAccessor='start'
+				endAccessor='end'
+				style={calendarStyles}
+			/>
+		</>
+	)
 }
 export default CalendarTask

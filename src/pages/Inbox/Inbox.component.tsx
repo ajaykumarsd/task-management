@@ -31,14 +31,10 @@ const Inbox = () => {
   }
   const handleSort = () => {
     const _taskItems = [...taskItems]
-
     const draggedItemContent = _taskItems.splice(dragItem.current, 1)[0]
-
     _taskItems.splice(dragOverItem.current, 0, draggedItemContent)
-
     dragItem.current = null
     dragOverItem.current = null
-
     setTaskItems(_taskItems)
   }
   return (
@@ -63,8 +59,8 @@ const Inbox = () => {
                     draggable
                     className='list-item'
                     key={index}
-                    onDragStart={(e) => (dragItem.current = index)}
-                    onDragEnter={(e) => (dragOverItem.current = index)}
+                    onDragStart={() => (dragItem.current = index)}
+                    onDragEnter={() => (dragOverItem.current = index)}
                     onDragEnd={handleSort}
                     onDragOver={(e) => e.preventDefault()}
                   >

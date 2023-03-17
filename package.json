@@ -30,12 +30,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx src",
-    "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
-    "lint:ci": "eslint --max-warnings 0 \"**/*.{ts,tsx}\""
+    "lint:fix": "npm run lint --fix",
+    "lint:ci": "eslint --max-warnings 0 \"**/*.{ts,tsx}\"",
+    "tsc": "tsc",
+    "prepare": "husky install"
   },
   "lint-staged": {
     "**/*.{js,jsx,ts,tsx}": [
-      "npm run lint"
+      "npm run lint",
+      "npm run test",
+      "npm run tsc"
     ]
   },
   "eslintConfig": {
