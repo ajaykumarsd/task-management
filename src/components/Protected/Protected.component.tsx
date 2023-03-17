@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-const ProtectedRoute = (props) => {
+const ProtectedRoute = (props: any) => {
   const navigate = useNavigate()
   const { Component } = props
   const userData = JSON.parse(localStorage.getItem('user')!)

@@ -18,13 +18,15 @@ const Home = () => {
   return (
     <LoginCard>
       <div>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '45rem' }}>
           <Card.Body>
-            <Card.Title>Task Management Dashboard</Card.Title>
+            <Card.Title>
+              <h3>Task Management Dashboard</h3>
+            </Card.Title>
             <Card.Text>Task Management Dashboard Platform</Card.Text>
             <GoogleLogin
               clientId={clientId}
-              buttonText='Google Login'
+              buttonText='Login with Google'
               onSuccess={onSuccess}
               onFailure={onFailure}
               cookiePolicy={'single_host_origin'}
