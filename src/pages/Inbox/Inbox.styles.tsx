@@ -39,6 +39,9 @@ export const InboxItems = styled.div`
 			justify-content: space-between;
 			margin-top: 10px;
 		}
+	overflow: scroll;
+    max-height: 480px;
+}
 	}
 
 	dl > * {

@@ -7,7 +7,7 @@ import { CreateTaskInterface, CreateTaskPropsInterface } from 'pages/CreateTask/
 const Inbox = () => {
   const [show, setShow] = useState<boolean>(false)
   const data = JSON.parse(localStorage.getItem('task')!)
-  const [taskItems, setTaskItems] = React.useState(data)
+  const [taskItems, setTaskItems] = useState<CreateTaskInterface[]>(data)
   const dragItem = React.useRef<any>(null)
   const dragOverItem = React.useRef<any>(null)
   const changeHandler = (item: React.ChangeEvent<HTMLInputElement>) => {
