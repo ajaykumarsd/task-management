@@ -12,8 +12,8 @@ const TaskChart = () => {
 		}
 		return false
 	})
-	TaskData[0].number = data.length - upcomingTask.length
-	TaskData[1].number = upcomingTask.length
+	TaskData[0].number = data?.length - upcomingTask?.length
+	TaskData[1].number = upcomingTask?.length
 	const chartData = {
 		labels: ['Completed', 'Pending'],
 		datasets: [
@@ -21,23 +21,25 @@ const TaskChart = () => {
 				data: TaskData.map((data) => data.number),
 				backgroundColor: ['#008000', '#FF0000'],
 				borderColor: 'black',
-				borderWidth: 1
-			}
-		]
+				borderWidth: 1,
+			},
+		],
 	}
 	return (
 		<ChartStyles>
-			<Pie
-				data={chartData}
-				options={{
-					plugins: {
-						title: {
-							display: true,
-							text: 'Completed vs Pending'
-						}
-					}
-				}}
-			/>
+			{data?.length && (
+				<Pie
+					data={chartData}
+					options={{
+						plugins: {
+							title: {
+								display: true,
+								text: 'Completed vs Pending',
+							},
+						},
+					}}
+				/>
+			)}
 		</ChartStyles>
 	)
 }
